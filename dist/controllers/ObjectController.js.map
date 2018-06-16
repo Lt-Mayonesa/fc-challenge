@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/controllers/ObjectController.js"],"names":["all","req","res","json","status"],"mappings":";;;;;QAAgBA,G,GAAAA,G;AAAT,SAASA,GAAT,CAAaC,GAAb,EAAkBC,GAAlB,EAAuB;AAC7BA,KAAIC,IAAJ,CAAS,EAAEC,QAAQ,IAAV,EAAT;AACA","file":"ObjectController.js","sourcesContent":["export function all(req, res) {\n\tres.json({ status: 'ok' });\n}\n"]}

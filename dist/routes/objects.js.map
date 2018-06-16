@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/routes/objects.js"],"names":["actions","app","get","all"],"mappings":";;;;;;AAAA;;IAAYA,O;;;;kBAEG,eAAO;AACrBC,KAAIC,GAAJ,CAAQ,GAAR,EAAaF,QAAQG,GAArB;AACA,C","file":"objects.js","sourcesContent":["import * as actions from '../controllers/ObjectController';\n\nexport default app => {\n\tapp.get('/', actions.all);\n}"]}
