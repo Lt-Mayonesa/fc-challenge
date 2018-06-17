@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 export const MAX_INSTANCES = 10;
 export const DEFAULT_TTL = 60 * 1000;
@@ -50,6 +50,15 @@ schema.pre('update', function(next) {
 
 export default mongoose.model('Object', schema);
 
+/**
+ * Implements https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)
+ * Method to remove the oldest value in collection
+ * 
+ * If the amounts of models is greater than the permitted
+ * search for the least reacently used record and remove it
+ * 
+ * @param {Model} model 
+ */
 export function cleanUp(model) {
 	model.count(function(err, count) {
 		if (count > MAX_INSTANCES) {
