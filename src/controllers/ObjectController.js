@@ -63,7 +63,6 @@ export function set(req, res, next) {
 
 export function deleteOne(req, res, next) {
 	Model.deleteOne({ key: req.params.key }, function(err) {
-		logger.error(err);
 		if (err) return next(err);
 
 		return res.json();

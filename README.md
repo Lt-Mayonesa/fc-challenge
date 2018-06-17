@@ -7,7 +7,7 @@ All data returned by the cache is random dummy data. You do not need to build a 
 The API shall be used with tools like curl or Postman.
 
 ## Usage
-For this project to work you need to have a MongoDB instance at hand and Node.js installed.
+For this project to work you need to have access to a **MongoDB** instance and **Node.js** installed.
 
 Installing
 ```
@@ -24,7 +24,7 @@ Running the app
 npm start
 ```
 
-### Configuration
+## Configuration
 All configuration can be found in ``./src/config/index.js``
 
 ## Endpoints (using prefix '/cache/v1')
@@ -62,21 +62,3 @@ Delete all keys from db
 
 Returns ``[Array]``:
  - empty array if successfull
-
-
-
-## Following features have to be implemented for the cache:
-- Add an endpoint that returns the cached data for a given key
-	- If the key is not found in the cache:
-		- Log an output “Cache miss”
-		- Create a random string
-		- Update the cache with this random string
-		- Return the random string
-	- If the key is found in the cache:
-		- Log an output “Cache hit”
-		- Get the data for this key
-		- Return the data
-- Add an endpoint that returns all stored keys in the cache
-- Add an endpoint that creates/updates the data for a given key
-- Add an endpoint that removes a given key from the cache
-- Add an endpoint that removes all keys from the cache
