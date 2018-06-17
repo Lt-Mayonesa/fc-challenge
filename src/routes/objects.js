@@ -1,9 +1,11 @@
 import * as actions from '../controllers/ObjectController';
+import { Router } from 'express';
+const router = Router();
 
-module.exports = app => {
-	app.get('/', actions.all);
-	app.get('/:key', actions.find);
-	app.post('/', actions.create);
-	app.delete('/:key', actions.deleteOne);
-	app.delete('/flush/all', actions.deleteAll);
-}
+router.get('/', actions.all);
+router.get('/:key', actions.get);
+router.put('/:key', actions.set);
+router.delete('/:key', actions.deleteOne);
+router.delete('/flush/all', actions.deleteAll);
+
+export default router;

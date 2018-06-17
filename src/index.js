@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -8,6 +6,8 @@ import morgan from 'morgan';
 // import custom configuration and utilities
 import config from './config';
 import logger from './utils/logger';
+
+import objectRoutes from './routes/objects';
 
 // initialize the app
 const app = express();
@@ -20,6 +20,8 @@ app.use(bodyParser.json());
 // initialize our logger
 app.use(morgan('combined'));
 
+app.use(config.server.prefix, objectRoutes);
+
 // listen on the designated port found in the configuration
 app.listen(config.server.port, err => {
 	if (err) {
@@ -29,11 +31,6 @@ app.listen(config.server.port, err => {
 
 	// require the database library (which instantiates a connection to mongodb)
 	require('./utils/db');
-
-	// loop through all routes and dynamically require them – passing api
-	fs.readdirSync(path.join(__dirname, 'routes')).map(file => {
-		require('./routes/' + file)(app);
-	});
 
 	// output the status of the api in the terminal
 	logger.info(
