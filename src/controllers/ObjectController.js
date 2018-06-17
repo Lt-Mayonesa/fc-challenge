@@ -54,9 +54,9 @@ export function set(req, res, next) {
 		{ key: req.params.key },
 		obj,
 		{ upsert: true, setDefaultsOnInsert: true },
-		function(err, model) {
+		function(err, result) {
 			if (err) return next(err);
-			return res.json(obj);
+			return res.status(!result.nModified ? 201 : 200).json(obj);
 		}
 	);
 }
@@ -73,6 +73,6 @@ export function deleteOne(req, res, next) {
 export function deleteAll(req, res, next) {
 	Model.remove({}, function(err) {
 		if (err) return next(err);
-		return res.json();
+		return res.json([]);
 	});
 }
